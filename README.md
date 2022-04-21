@@ -1,24 +1,60 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column             | Type    | Option                    |
+|--------------------|---------|---------------------------|
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| ruby_last_name     | string  | null: false               |
+| ruby_first_name    | string  | null: false               |
+| birth_date         | date    | null: false               |
 
-Things you may want to cover:
+## Association
+- has_many : buying_histories
+- has_many :items
 
-* Ruby version
+## buying_historiesテーブル
+| Column       | Type       | Option                         |
+|--------------|------------|--------------------------------|
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
 
-* System dependencies
+## Association
+- has_one :address
+- belongs_to :user
+- belongs_to :item
 
-* Configuration
 
-* Database creation
+## addressesテーブル
+| Column              | Type       | Option                         |
+|---------------------|------------|--------------------------------|
+| postal_code         | string     | null: false                    |
+| province_id         | integer    | null: false                    |
+| city                | string     | null: false                    |
+| house_number        | string     | null: false                    |
+| building            | string     |                                |
+| phone_number        | string     | null: false                    |
+| buying_history      | references | null: false, foreign_key: true |
 
-* Database initialization
+## Association
+- belongs_to : buying_history
 
-* How to run the test suite
+## itemsテーブル
+| Column              | Type       | Option                         |
+|---------------------|------------|--------------------------------|
+| name                | string     | null: false                    |
+| information         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| state_id            | integer    | null: false                    |
+| delivery_fee_id     | integer    | null: false                    |
+| province_id         | integer    | null: false                    |
+| delivery_time_id    | string     | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Association
+- has_one :buying_history
+- belongs_to :user
