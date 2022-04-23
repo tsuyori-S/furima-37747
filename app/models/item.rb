@@ -14,4 +14,14 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_time
 
+  validates :image,       presence: true
+  validates :name,        presence: true
+  validates :information, presence: true
+  validates :price,       presence: true, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
+
+  validates :category_id,      numericality: { other_than: 1, message: "can't be blank" }
+  validates :state_id,         numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_fee_id,  numericality: { other_than: 1, message: "can't be blank" }
+  validates :province_id,      numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_time_id, numericality: { other_than: 1, message: "can't be blank" }
 end
