@@ -51,7 +51,7 @@
 | state_id            | integer    | null: false                    |
 | delivery_fee_id     | integer    | null: false                    |
 | province_id         | integer    | null: false                    |
-| delivery_time_id    | string     | null: false                    |
+| delivery_time_id    | integer    | null: false                    |
 | price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
