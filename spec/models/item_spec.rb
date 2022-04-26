@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload("/files/test_image.jpg")
+    @item.image = fixture_file_upload('/files/test_image.jpg')
   end
-
 
   describe '商品出品' do
     context '商品を出品できる場合' do
@@ -98,17 +97,17 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数字以外だと登録できない' do
         @item.price = 'a'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが300以下だと登録できない' do
         @item.price = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが9,999,999以上だと登録できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
     end
   end
