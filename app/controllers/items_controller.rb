@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index]
+  before_action :authenticate_user!, only: [:new]
 
   def index
-    @items = Item.all
+    # @items = Item.all
   end
 
   def new
@@ -15,13 +15,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
-    end
-  end
-
-  private
-  def move_to_signed_in
-    unless user_signed_in?
-      redirect_to '/users/sign_in'
     end
   end
 
