@@ -13,10 +13,10 @@
 | birth_date         | date    | null: false               |
 
 ## Association
-- has_many : buying_histories
+- has_many :orders
 - has_many :items
 
-## buying_historiesテーブル
+## ordersテーブル
 | Column       | Type       | Option                         |
 |--------------|------------|--------------------------------|
 | user         | references | null: false, foreign_key: true |
@@ -37,10 +37,10 @@
 | house_number        | string     | null: false                    |
 | building            | string     |                                |
 | phone_number        | string     | null: false                    |
-| buying_history      | references | null: false, foreign_key: true |
+| order               | references | null: false, foreign_key: true |
 
 ## Association
-- belongs_to : buying_history
+- belongs_to : order
 
 ## itemsテーブル
 | Column              | Type       | Option                         |
@@ -56,5 +56,5 @@
 | user                | references | null: false, foreign_key: true |
 
 ## Association
-- has_one :buying_history
+- has_one :order
 - belongs_to :user
